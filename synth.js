@@ -2,6 +2,11 @@ var context;
 var osc1;
 var osc2;
 var gain1;
+var depressed_keys = {};
+
+var isEmpty = 	function(obj) {
+					return Object.keys(obj).length === 0;
+				};
 
 var stringToFreq = {'A': 261.36, 'W': 277.2, 'S': 293.7 , 'E': 311.1, 'D': 329.6, 'F': 349.2, 'T': 370.0, 'G': 392.0, 'Y': 415.3, 'H': 440,
 						'U': 466.2, 'J': 493.9, 'K': 523.3};
@@ -47,12 +52,18 @@ function makeNote (e) {
 	osc1.setFreq(freq);
 	osc2.setFreq(freq);
 
-
 	gain1.setGain(1);
+	depressed_keys[e.keyCode] = true;
 }
 
 function stopNote (e) {
-	gain1.setGain(0);
+	delete depressed_keys[e.keyCode];
+
+	if(isEmpty(depressed_keys)){
+		gain1.setGain(0);
+	}
+
+	
 }
 
 
