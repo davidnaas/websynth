@@ -16,6 +16,10 @@ function Oscillator () {
 		oscillator.start(state);
 	}
 
+	function setType (newType) {
+		oscillator.type = newType;
+	}
+
 	
 	function setFreq (newFrequency) {
 		oscillator.frequency.value = newFrequency;
@@ -30,7 +34,8 @@ function Oscillator () {
 			connect: connect,
 			start: start,
 			getOsc: getOsc,
-			setFreq: setFreq
+			setFreq: setFreq,
+			setType: setType
 	});
 
 	

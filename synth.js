@@ -26,10 +26,10 @@ $(document).ready(function  () {
 
 	//create oscs
 	osc1 = Oscillator();
-	osc1.init(2, context);
+	osc1.init('sine', context);
 
 	osc2 = Oscillator();
-	osc2.init(2, context);
+	osc2.init('sine', context);
 
 
 	//create gain1
@@ -43,6 +43,17 @@ $(document).ready(function  () {
 	osc2.connect(gain1.getGain());
 	gain1.connect(context.destination)
 	osc1.start(0);
+	osc2.start(0);
+
+
+	//events from ui
+	$("#waveSelect1").change(function(event) {
+		osc1.setType(event.target.value);
+	});
+
+	$("#waveSelect2").change(function(event) {
+		osc2.setType(event.target.value);
+	});
 
 	
 });
@@ -51,8 +62,7 @@ $(document).ready(function  () {
 
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
-	console.log(freq);
-	console.log(String.fromCharCode(e.keyCode));
+	
 	osc1.setFreq(freq);
 	osc2.setFreq(freq);
 
@@ -70,5 +80,7 @@ function stopNote (e) {
 
 	
 }
+
+
 
 
