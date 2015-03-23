@@ -1,6 +1,7 @@
 
 function Oscillator () {
 	var oscillator;
+	var multiplier = 1;
 
 	function init (type, externalContext) {
 
@@ -23,7 +24,7 @@ function Oscillator () {
 
 	
 	function setFreq (newFrequency) {
-		oscillator.frequency.value = newFrequency;
+		oscillator.frequency.value = (newFrequency * multiplier);
 	}
 
 	function getOsc () {
@@ -35,7 +36,17 @@ function Oscillator () {
 	}
 
 	function setCoarse (value) {
-		
+		if(value == 1){
+			multiplier = 1/4;
+		}else if(value == 2){
+			multiplier = 1/2;
+		}else if(value == 4){
+			multiplier = 2;
+		}else if(value == 5){
+			multiplier = 4;
+		}else{
+			multiplier = 1;
+		}
 	}
 
 	return Object.freeze({

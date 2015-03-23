@@ -64,6 +64,11 @@ function detuneVCO (value, source) {
 		
 }
 
+function coarseVCO (value, source) {
+	osc = source === 'coarse1' ? osc1 : osc2
+	osc.setCoarse(value);
+}
+
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
 	
