@@ -2,6 +2,7 @@ var context;
 var osc1;
 var osc2;
 var gain1;
+var filter;
 var depressed_keys = {};
 
 var isEmpty = 	function(obj) {
@@ -37,11 +38,19 @@ $(document).ready(function  () {
 	gain1.init(context);
 	gain1.setGain(0);
 
+	//create filter
+	filter = Filter();
+	filter.init(context);
+	filter.setQ(13);
+	filter.setCutOff(20000);
+	filter.setType('lowpass');
+
 
 	//connect	
 	osc1.connect(gain1.getGain());
 	osc2.connect(gain1.getGain());
-	gain1.connect(context.destination)
+	gain1.connect(filter.getFilter());
+	filter.connect(context.destination);
 	osc1.start(0);
 	osc2.start(0);
 
@@ -69,6 +78,14 @@ function coarseVCO (value, source) {
 	osc.setCoarse(value);
 }
 
+function cutoff (freq) {
+	filter.setCutOff(freq);
+}
+
+function Q (ammount) {
+	filter.setQ(ammount);
+}
+
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
 	
@@ -76,7 +93,7 @@ function makeNote (e) {
 	osc2.setFreq(freq);
 
 	if(freq != undefined)
-		gain1.setGain(1);
+		gain1.setGain(.3);
 	depressed_keys[e.keyCode] = true;
 }
 

@@ -20,5 +20,5 @@ function Gain () {
 			setGain: setGain,
 			getGain: getGain,
 			connect: connect
-	})
+	});
 }

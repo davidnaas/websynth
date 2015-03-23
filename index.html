@@ -44,9 +44,19 @@
 		</article>
 
 
+		<article class="filter" id="filter">
+			Cutoff
+			<input class="cutoff slider" id="cutoff" type="range" min="0" max="20000" value="20000" oninput="cutoff(this.value)"/>
+			Resonance
+			<input class="resonance slider" id="resonance" type="range" min="1" max="27" value="13" oninput="Q(this.value)"/>
+
+		</article>
+
+
 
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="vco.js"></script>
+		<script src="filter.js"></script>
 		<script src="gain.js"></script>
 		<script src="synth.js"></script>
 
