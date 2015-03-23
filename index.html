@@ -13,27 +13,36 @@
 	<body>
 		<section>
 
+		<article class="vco" id="vco1">
+			
+			<select name="wave1" id="waveSelect1">
+				<option value="sine">SINE</option>
+				<option value="triangle">TRIANGLE</option>
+				<option value="sawtooth">SAWTOOTH</option>
+				<option value="square">SQUARE</option>
+			</select>
+			Detune
+			<input class="detune" id="detune1" type="range" value="0" oninput="detuneVCO(this.value, this.id)"/>
 
-		<select name="wave1" id="waveSelect1">
-			<option value="sine">SINE</option>
-			<option value="triangle">TRIANGLE</option>
-			<option value="sawtooth">SAWTOOTH</option>
-			<option value="square">SQUARE</option>
-		</select>
+		</article>
 
-		<select name="wave2" id="waveSelect2">
-			<option value="sine">SINE</option>
-			<option value="triangle">TRIANGLE</option>
-			<option value="sawtooth">SAWTOOTH</option>
-			<option value="square">SQUARE</option>
-		</select>
-
+		<article class="vco" id="vco2">
+			<select name="wave2" id="waveSelect2">
+				<option value="sine">SINE</option>
+				<option value="triangle">TRIANGLE</option>
+				<option value="sawtooth">SAWTOOTH</option>
+				<option value="square">SQUARE</option>
+			</select>
+			Detune	
+			<input class="detune" id="detune2" type="range" value="0" oninput="detuneVCO(this.value, this.id)"/>
+		</article>
 
 
-			<script src="bower_components/jquery/dist/jquery.min.js"></script>
-			<script src="osc.js"></script>
-			<script src="gain.js"></script>
-			<script src="synth.js"></script>
+
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="vco.js"></script>
+		<script src="gain.js"></script>
+		<script src="synth.js"></script>
 
 		</section>
 	</body>

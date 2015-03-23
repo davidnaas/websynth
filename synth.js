@@ -58,7 +58,11 @@ $(document).ready(function  () {
 	
 });
 
-
+function detuneVCO (value, source) {
+	osc = source === 'detune1' ? osc1 : osc2
+	osc.detune(value);
+		
+}
 
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
