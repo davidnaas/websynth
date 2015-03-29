@@ -89,8 +89,8 @@ function Q (ammount) {
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
 	
-	osc1.setFreq(freq);
-	osc2.setFreq(freq);
+	osc1.setFreq(freq, context);
+	osc2.setFreq(freq, context);
 
 	if(freq != undefined)
 		gain1.setGain(.3);

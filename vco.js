@@ -23,8 +23,9 @@ function Oscillator () {
 	}
 
 	
-	function setFreq (newFrequency) {
-		oscillator.frequency.value = (newFrequency * multiplier);
+	function setFreq (newFrequency, externalContext) {
+		oscillator.frequency.setValueAtTime(newFrequency * multiplier, externalContext.currentTime);
+
 	}
 
 	function getOsc () {
