@@ -3,6 +3,7 @@ var osc1;
 var osc2;
 var gain1;
 var filter;
+portamentoAmmount = 0;
 var depressed_keys = {};
 
 var isEmpty = 	function(obj) {
@@ -86,11 +87,15 @@ function Q (ammount) {
 	filter.setQ(ammount);
 }
 
+function portamento (ammount) {
+	portamentoAmmount = ammount/1000;
+}
+
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
 	
-	osc1.setFreq(freq, context);
-	osc2.setFreq(freq, context);
+	osc1.setFreq(freq, context, portamentoAmmount);
+	osc2.setFreq(freq, context, portamentoAmmount);
 
 	if(freq != undefined)
 		gain1.setGain(.3);

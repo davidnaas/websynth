@@ -13,6 +13,8 @@
 	<body>
 		<section>
 
+		
+
 		<article class="vco" id="vco1">
 			
 			<select name="wave1" id="waveSelect1">
@@ -52,14 +54,20 @@
 
 		</article>
 
+		<article class="portamento" id="portamento">
+			Portamento
+			<input class="portamentoSlider slider" type="range" min="0" max="500" value="0" oninput="portamento(this.value)"/>
+
+		</article>
 
 
+		<script src="knobs/Knob.js"></script>
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="vco.js"></script>
 		<script src="gain.js"></script>
 		<script src="filter.js"></script>
 		<script src="synth.js"></script>
-
+ 
 		</section>
 	</body>
 </html>

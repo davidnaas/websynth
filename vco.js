@@ -23,9 +23,18 @@ function Oscillator () {
 	}
 
 	
-	function setFreq (newFrequency, externalContext) {
-		oscillator.frequency.setValueAtTime(newFrequency * multiplier, externalContext.currentTime);
+	function setFreq (newFrequency, externalContext, portamentoAmmount) {
+		//This resets and aligns the scheduellng point we want 
+		oscillator.frequency.cancelScheduledValues(externalContext.currentTime);
+		oscillator.frequency.setValueAtTime(oscillator.frequency.value, externalContext.currentTime );  
 
+		oscillator.frequency.linearRampToValueAtTime(newFrequency * multiplier, externalContext.currentTime + portamentoAmmount);
+
+	}
+
+	//provate func
+	function getFreQ () {
+		return oscillator.frequency;
 	}
 
 	function getOsc () {
