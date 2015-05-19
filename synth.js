@@ -97,9 +97,10 @@ function makeNote (e) {
 	vco1.setFreq(freq, context, portamentoAmmount);
 	vco2.setFreq(freq, context, portamentoAmmount);
 
-	if(freq != undefined)
+	if(freq != undefined && !depressed_keys[e.keyCode]){
 		vca1.setGain(.3);
-	depressed_keys[e.keyCode] = true;
+		depressed_keys[e.keyCode] = true;
+	}
 }
 
 function stopNote (e) {
