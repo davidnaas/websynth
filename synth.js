@@ -90,6 +90,12 @@ function Q (ammount) {
 function portamento (ammount) {
 	portamentoAmmount = ammount/1000;
 }
+function attack (value) {
+	vca1.setAttack(value/100);
+}
+function release (value) {
+	vca1.setRelease(value/100);
+}
 
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
