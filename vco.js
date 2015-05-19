@@ -1,5 +1,5 @@
 
-function Oscillator () {
+function VCO () {
 	var oscillator;
 	var multiplier = 1;
 

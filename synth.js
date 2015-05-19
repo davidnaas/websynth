@@ -1,8 +1,8 @@
 var context;
-var osc1;
-var osc2;
-var gain1;
-var filter;
+var vco1;
+var vco2;
+var vca;
+var vcf;
 portamentoAmmount = 0;
 var depressed_keys = {};
 
@@ -27,64 +27,64 @@ $(document).ready(function  () {
 	}
 
 	//create oscs
-	osc1 = Oscillator();
-	osc1.init('sine', context);
+	vco1 = VCO();
+	vco1.init('sine', context);
 
-	osc2 = Oscillator();
-	osc2.init('sine', context);
+	vco2 = VCO();
+	vco2.init('sine', context);
 
 
-	//create gain1
-	gain1 = Gain();
-	gain1.init(context);
-	gain1.setGain(0);
+	//create vca1
+	vca1 = VCA();
+	vca1.init(context);
+	vca1.setGain(0);
 
-	//create filter
-	filter = Filter();
-	filter.init(context);
-	filter.setQ(13);
-	filter.setCutOff(20000);
-	filter.setType('lowpass');
+	//create vcf
+	vcf = VCF();
+	vcf.init(context);
+	vcf.setQ(13);
+	vcf.setCutOff(20000);
+	vcf.setType('lowpass');
 
 
 	//connect	
-	osc1.connect(gain1.getGain());
-	osc2.connect(gain1.getGain());
-	gain1.connect(filter.getFilter());
-	filter.connect(context.destination);
-	osc1.start(0);
-	osc2.start(0);
+	vco1.connect(vca1.getGain());
+	vco2.connect(vca1.getGain());
+	vca1.connect(vcf.getFilter());
+	vcf.connect(context.destination);
+	vco1.start(0);
+	vco2.start(0);
 
 
 	//events from ui
 	$("#waveSelect1").change(function(event) {
-		osc1.setType(event.target.value);
+		vco1.setType(event.target.value);
 	});
 
 	$("#waveSelect2").change(function(event) {
-		osc2.setType(event.target.value);
+		vco2.setType(event.target.value);
 	});
 
 	
 });
 
 function detuneVCO (value, source) {
-	osc = source === 'detune1' ? osc1 : osc2
+	osc = source === 'detune1' ? vco1 : vco2
 	osc.detune(value);
 		
 }
 
 function coarseVCO (value, source) {
-	osc = source === 'coarse1' ? osc1 : osc2
+	osc = source === 'coarse1' ? vco1 : vco2
 	osc.setCoarse(value);
 }
 
 function cutoff (freq) {
-	filter.setCutOff(freq);
+	vcf.setCutOff(freq);
 }
 
 function Q (ammount) {
-	filter.setQ(ammount);
+	vcf.setQ(ammount);
 }
 
 function portamento (ammount) {
@@ -94,11 +94,11 @@ function portamento (ammount) {
 function makeNote (e) {
 	var freq = stringToFreq[String.fromCharCode(e.keyCode)];
 	
-	osc1.setFreq(freq, context, portamentoAmmount);
-	osc2.setFreq(freq, context, portamentoAmmount);
+	vco1.setFreq(freq, context, portamentoAmmount);
+	vco2.setFreq(freq, context, portamentoAmmount);
 
 	if(freq != undefined)
-		gain1.setGain(.3);
+		vca1.setGain(.3);
 	depressed_keys[e.keyCode] = true;
 }
 
@@ -106,7 +106,7 @@ function stopNote (e) {
 	delete depressed_keys[e.keyCode];
 
 	if(isEmpty(depressed_keys)){
-		gain1.setGain(0);
+		vca1.setGain(0);
 	}
 
 	
